@@ -4,11 +4,11 @@ rm -rf project
 rails new project
 cd project
 cp -r ../../lib/* lib/tasks
-rake create_home_controller
 
-rake install['spine']
-rake install['backbone']
-rake install['columnal_without-typography']
-rake install['twitter_bootstrap_without-grid']
+rake bootstrap:install['spine']
+rake bootstrap:install['backbone']
+rake bootstrap:install['columnal_without-typography']
+rake bootstrap:install['twitter_bootstrap_without-grid']
 
-rake add_to_gemfile
+rake bootstrap:create_home_controller
+rake bootstrap:add_to_gemfile
