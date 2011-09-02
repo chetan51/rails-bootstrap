@@ -4,13 +4,19 @@ Rails Bootstrap lets you create a boilerplate Rails project, furnished with all 
 
 ### Usage ###
 
+Start Rails project and install Rails Bootstrap:
+
     rails new project_name
     cd project_name
     cp -r path_to_rails-bootstrap/lib/* lib/tasks
+
+Bootstrap your project:
+
     rake install['spine']
     rake install['backbone']
     rake install['columnal']           # or rake install['columnal_without-typography']
     rake install['twitter_bootstrap']  # or rake install['twitter_bootstrap_without-grid']
+    rake add_to_gemfile                # adds a bunch of useful gems (commented out) to the Gemfile, so you can enable the ones you want at your leisure
 
 ### Included dependencies ###
 

@@ -4,6 +4,23 @@ directory "app/assets/javascripts/include"
 directory "app/assets/stylesheets/include"
 directory "app/views/home"
 
+task :install, :dependency do |t, args|
+	case args.dependency
+	when "spine"
+		Rake::Task["install_spine"].invoke
+	when "backbone"
+		Rake::Task["install_backbone"].invoke
+	when "columnal"
+		Rake::Task["install_columnal"].invoke
+	when "columnal_without-typography"
+		Rake::Task["install_columnal_without_typography"].invoke
+	when "twitter_bootstrap"
+		Rake::Task["install_twitter_bootstrap"].invoke
+	when "twitter_bootstrap_without-grid"
+		Rake::Task["install_twitter_bootstrap_without_grid"].invoke
+	end
+end
+
 task :create_home_controller => ["app/views/home"] do
 	# Generate controller
 	`script/rails generate controller home`
@@ -24,20 +41,33 @@ task :create_home_controller => ["app/views/home"] do
 	`rm -f public/index.html`
 end
 
-task :install, :dependency do |t, args|
-	case args.dependency
-	when "spine"
-		Rake::Task["install_spine"].invoke
-	when "backbone"
-		Rake::Task["install_backbone"].invoke
-	when "columnal"
-		Rake::Task["install_columnal"].invoke
-	when "columnal_without-typography"
-		Rake::Task["install_columnal_without_typography"].invoke
-	when "twitter_bootstrap"
-		Rake::Task["install_twitter_bootstrap"].invoke
-	when "twitter_bootstrap_without-grid"
-		Rake::Task["install_twitter_bootstrap_without_grid"].invoke
+task :add_to_gemfile do
+	commented_gems = """
+# gem 'devise'
+
+# gem 'rails_admin', :git => 'git://github.com/sferik/rails_admin.git'
+
+# gem 'rack-offline', :git => 'git://github.com/chetan51/rack-offline.git
+
+# Unit / Functional Testing
+# group :development, :test do
+# 	gem 'jasmine'
+# 	gem 'headless'
+# end
+
+# HTTP / Rest client
+# gem 'rest-client'
+
+# New Relic
+# gem 'newrelic_rpm'
+
+# Backup
+# gem 'heroku_backup_task'
+	"""
+
+	filename = 'Gemfile'
+	File.open(filename, "a") do |file|
+		file.puts commented_gems
 	end
 end
 
