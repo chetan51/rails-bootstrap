@@ -1,6 +1,7 @@
 require 'fileutils'
 
 directory "app/assets/javascripts/include"
+directory "app/assets/stylesheets/include"
 directory "app/views/home"
 
 task :create_home_controller => ["app/views/home"] do
@@ -29,6 +30,8 @@ task :install, :dependency do |t, args|
 		Rake::Task["install_spine"].invoke
 	when "backbone"
 		Rake::Task["install_backbone"].invoke
+	when "columnal"
+		Rake::Task["install_columnal"].invoke
 	end
 end
 
@@ -51,6 +54,17 @@ task :install_backbone => ["app/assets/javascripts/include"] do
 	FileUtils.mv('tmp/backbone.min.js', 'app/assets/javascripts/include/backbone.min.js')
 
 	build_js_app_directory_structure
+end
+
+task :install_columnal => ["app/assets/stylesheets/include"] do
+	# Fetch Columnal
+	`wget http://www.columnal.com/download/columnal-0.85.zip -O tmp/columnal.zip`
+
+	# Unzip it
+	`unzip -oq -d tmp tmp/columnal.zip`
+
+	# Move to assets
+	`mv tmp/columnal-0.85/code/css app/assets/stylesheets/include/columnal`
 end
 
 

@@ -7,3 +7,4 @@ cp -r ../../lib/* lib/tasks
 rake create_home_controller
 rake install['spine']
 rake install['backbone']
+rake install['columnal']
