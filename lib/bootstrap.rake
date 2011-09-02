@@ -1,6 +1,6 @@
 require 'fileutils'
 
-directory "public/javascripts"
+directory "app/assets/javascripts/include"
 directory "app/views/home"
 
 task :create_home_controller => ["app/views/home"] do
@@ -33,34 +33,22 @@ task :install, :dependency do |t, args|
 end
 
 
-task :install_spine => ["public/javascripts"] do
+task :install_spine => ["app/assets/javascripts/include"] do
 	# Fetch Spine.js
 	`wget http://maccman.github.com/spine/spine.min.js -O tmp/spine.min.js`
 
 	# Move to assets
-	FileUtils.mv('tmp/spine.min.js', 'public/javascripts/spine.min.js')
-
-	# Inject script tag into application layout view
-	replace_string_in_file('app/views/layouts/application.html.erb',
-	                       '</head>',
-	                       '  <script src="/javascripts/spine.min.js" type="text/javascript"></script>',
-	                       '  <script src="/javascripts/spine.min.js" type="text/javascript"></script>' + "\n" + '</head>')
+	FileUtils.mv('tmp/spine.min.js', 'app/assets/javascripts/include/spine.min.js')
 
 	build_js_app_directory_structure
 end
 
-task :install_backbone => ["public/javascripts"] do
+task :install_backbone => ["app/assets/javascripts/include"] do
 	# Fetch backbone.js
 	`wget http://documentcloud.github.com/backbone/backbone-min.js -O tmp/backbone.min.js`
 
 	# Move to assets
-	FileUtils.mv('tmp/backbone.min.js', 'public/javascripts/backbone.min.js')
-
-	# Inject script tag into application layout view
-	replace_string_in_file('app/views/layouts/application.html.erb',
-	                       '</head>',
-	                       '  <script src="/javascripts/backbone.min.js" type="text/javascript"></script>',
-	                       '  <script src="/javascripts/backbone.min.js" type="text/javascript"></script>' + "\n" + '</head>')
+	FileUtils.mv('tmp/backbone.min.js', 'app/assets/javascripts/include/backbone.min.js')
 
 	build_js_app_directory_structure
 end
