@@ -30,4 +30,4 @@ Everyone needs to replace `public/index.html` with a dedicated Home controller a
 
     rake create_home_controller
 
-Specifically, it creates a Home controller, sets the root URL for your website to point to its index method, which renders `app/views/home/index.html.erb`.
+Specifically, it creates a Home controller, and sets the root URL for your website to point to its index method, which renders `app/views/home/index.html.erb`.
