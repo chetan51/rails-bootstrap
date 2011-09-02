@@ -9,8 +9,8 @@ Rails Bootstrap lets you create a boilerplate Rails project, furnished with all 
     cp -r path_to_rails-bootstrap/lib/* lib/tasks
     rake install['spine']
     rake install['backbone']
-    rake install['columnal'] # or rake install['columnal_without-typography']
-    rake install['twitter_bootstrap'] # or rake install['twitter_bootstrap_without-grid']
+    rake install['columnal']           # or rake install['columnal_without-typography']
+    rake install['twitter_bootstrap']  # or rake install['twitter_bootstrap_without-grid']
 
 ### Included dependencies ###
 
