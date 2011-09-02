@@ -32,8 +32,12 @@ task :install, :dependency do |t, args|
 		Rake::Task["install_backbone"].invoke
 	when "columnal"
 		Rake::Task["install_columnal"].invoke
+	when "columnal_without-typography"
+		Rake::Task["install_columnal_without_typography"].invoke
 	when "twitter_bootstrap"
 		Rake::Task["install_twitter_bootstrap"].invoke
+	when "twitter_bootstrap_without-grid"
+		Rake::Task["install_twitter_bootstrap_without_grid"].invoke
 	end
 end
 
@@ -67,6 +71,16 @@ task :install_columnal => ["app/assets/stylesheets/include"] do
 
 	# Move to assets
 	`mv tmp/columnal-0.85/code/css app/assets/stylesheets/include/columnal`
+
+	# Remove smallerscreen.css (unnecessary file)
+	`rm app/assets/stylesheets/include/columnal/smallerscreen.css`
+end
+
+task :install_columnal_without_typography do
+	Rake::Task["install_columnal"].invoke
+
+	# Remove typography
+	replace_regex_in_file('app/assets/stylesheets/include/columnal/columnal.css', /\/\* TYPE PRESETS\n\/\/.*\/\* END TYPE PRESETS\n\/* \*\//m, "")
 end
 
 task :install_twitter_bootstrap => ["app/assets/stylesheets/include"] do
@@ -75,6 +89,14 @@ task :install_twitter_bootstrap => ["app/assets/stylesheets/include"] do
 
 	# Move to assets
 	`mv tmp/twitter_bootstrap.min.css app/assets/stylesheets/include/twitter_bootstrap.min.css`
+end
+
+task :install_twitter_bootstrap_without_grid do
+	Rake::Task["install_twitter_bootstrap"].invoke
+
+	# Remove grid
+	replace_regex_in_file('app/assets/stylesheets/include/twitter_bootstrap.min.css', /\.row.*/, "")
+	replace_regex_in_file('app/assets/stylesheets/include/twitter_bootstrap.min.css', /\.container{.*/, "")
 end
 
 
@@ -89,5 +111,13 @@ def replace_string_in_file(filename, search_string, test_string, replace_string)
 		File.open(filename, "w") do |file|
 			file.puts text
 		end
+	end
+end
+
+def replace_regex_in_file(filename, search_regex, replace_string)
+	text = File.read(filename)
+	text.gsub!(search_regex, replace_string)
+	File.open(filename, "w") do |file|
+		file.puts text
 	end
 end

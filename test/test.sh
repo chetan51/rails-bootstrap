@@ -7,5 +7,5 @@ cp -r ../../lib/* lib/tasks
 rake create_home_controller
 rake install['spine']
 rake install['backbone']
-rake install['columnal']
-rake install['twitter_bootstrap']
+rake install['columnal_without-typography']
+rake install['twitter_bootstrap_without-grid']
