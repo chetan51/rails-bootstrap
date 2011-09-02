@@ -23,3 +23,11 @@ Rails Bootstrap lets you create a boilerplate Rails project, furnished with all 
 - [Twitter Bootstrap](http://twitter.github.com/bootstrap/)
 
 Please feel free to fork and add more! All the magic happens in `lib/bootstrap.rake`.
+
+### A little bonus ###
+
+Everyone needs to replace `public/index.html` with a dedicated Home controller and respective view. That's exactly what the nifty little command below does.
+
+    rake create_home_controller
+
+Specifically, it creates a Home controller, sets the root URL for your website to point to its index method, which renders `app/views/home/index.html.erb`.
