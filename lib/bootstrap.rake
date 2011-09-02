@@ -51,6 +51,9 @@ namespace :bootstrap do
 
 # gem 'rack-offline', :git => 'git://github.com/chetan51/rack-offline.git
 
+# Useful Sass Mixins
+# gem 'bourbon'
+
 # Unit / Functional Testing
 # group :development, :test do
 # 	gem 'jasmine'
