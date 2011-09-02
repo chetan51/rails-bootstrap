@@ -8,3 +8,4 @@ rake create_home_controller
 rake install['spine']
 rake install['backbone']
 rake install['columnal']
+rake install['twitter_bootstrap']

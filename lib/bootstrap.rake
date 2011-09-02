@@ -32,6 +32,8 @@ task :install, :dependency do |t, args|
 		Rake::Task["install_backbone"].invoke
 	when "columnal"
 		Rake::Task["install_columnal"].invoke
+	when "twitter_bootstrap"
+		Rake::Task["install_twitter_bootstrap"].invoke
 	end
 end
 
@@ -65,6 +67,14 @@ task :install_columnal => ["app/assets/stylesheets/include"] do
 
 	# Move to assets
 	`mv tmp/columnal-0.85/code/css app/assets/stylesheets/include/columnal`
+end
+
+task :install_twitter_bootstrap => ["app/assets/stylesheets/include"] do
+	# Fetch Twitter Bootstrap
+	`wget http://twitter.github.com/bootstrap/assets/css/bootstrap-1.1.1.min.css -O tmp/twitter_bootstrap.min.css`
+
+	# Move to assets
+	`mv tmp/twitter_bootstrap.min.css app/assets/stylesheets/include/twitter_bootstrap.min.css`
 end
 
 
