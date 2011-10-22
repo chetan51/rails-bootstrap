@@ -14,8 +14,8 @@ Bootstrap your project:
 
     rake bootstrap:install['spine']
     rake bootstrap:install['backbone']
-    rake bootstrap:install['columnal']           # or rake install['columnal_without-typography']
-    rake bootstrap:install['twitter_bootstrap']  # or rake install['twitter_bootstrap_without-grid']
+    rake bootstrap:install['columnal']           # or rake bootstrap:install['columnal_without-typography']
+    rake bootstrap:install['twitter_bootstrap']  # or rake bootstrap:install['twitter_bootstrap_without-grid']
     rake bootstrap:add_to_gemfile                # adds a bunch of useful gems (commented out) to the Gemfile, so you can enable the ones you want at your leisure
 
 ### Included dependencies ###
